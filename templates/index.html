@@ -8,7 +8,33 @@ home
 {% block body %}
 <h1>view all data here </h1>
 
-<table class="table" id="display-data">
+<div class="container-fluid">
+    <table class="table table-striped table-sm" id="display-data">
+        <thead class="thead-dark">
+            <tr>
+                <th>full name</th>
+                <th>age</th>
+                <th>address</th>
+                <th>phone</th>
+                <th>date created</th>
+                <th>updated</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{patient.fullname}}</td>
+            <td>{{patient.age}}</td>
+            <td>{{patient.address}}</td>
+            <td>{{patient.phone}}</td>
+            <td>{{patient.date_created}}</td>
+            <td>{{patient.updated}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<!-- <table class="table" id="display-data">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -28,7 +54,7 @@ home
       </tr>
      
     </tbody>
-  </table>
+  </table> -->
   
 
 
@@ -51,12 +77,18 @@ home
                     for(var key in response.profiles){
                         var dato = '<tr>';
                             dato += '<td>'+response.profiles[key].fullname+'</td>';
-                            dato += '<td>'+response.profiles[key].age+'</td></tr>';
+            
+                            dato += '<td>'+response.profiles[key].age+'</td>';
+                            dato += '<td>'+response.profiles[key].address+'</td>';
+                            dato += '<td>'+response.profiles[key].phone+'</td><tr>';
 
-                            $('#display-data').append(dato);
+
+                           
 
                             
                     }
+
+                    $('#display-data tbody').append(dato);
 
                   
 

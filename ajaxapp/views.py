@@ -7,9 +7,10 @@ from django.http import JsonResponse
 # Create your views here.
 
 def index(request):
+    patients=patient.objects.all()
     
     
-    return render(request,"index.html",)
+    return render(request,"index.html",{"patients":patients})
 
 
 def getpatient(request):
