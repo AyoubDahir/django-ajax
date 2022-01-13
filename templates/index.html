@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+home
+{% endblock title %}
+
+
+{% block body %}
+<h1>view all data here </h1>
+
+<table class="table" id="display-data">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">fullname</th>
+        <th scope="col">age</th>
+        <th scope="col">addrress</th>
+        <th scope="col">phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td >ayuub</td>
+        <td>15</td>
+        <td>hargeisa</td>
+        <td>4232116</td>
+      </tr>
+     
+    </tbody>
+  </table>
+  
+
+
+
+
+
+<script>
+    $(document).ready(function(){
+
+
+        setInterval(function(){
+            $.ajax({
+                type:"GET",
+                url:"{% url 'getpatients' %}",
+                success:function(response){
+                    $("#display-data").empty();
+
+                 
+                    
+                    for(var key in response.profiles){
+                        var dato = '<tr>';
+                            dato += '<td>'+response.profiles[key].fullname+'</td>';
+                            dato += '<td>'+response.profiles[key].age+'</td></tr>';
+
+                            $('#display-data').append(dato);
+
+                            
+                    }
+
+                  
+
+                    
+                },
+
+            })
+
+        },1000)
+    });
+
+</script>
+
+    
+{% endblock body %}
+
+    
